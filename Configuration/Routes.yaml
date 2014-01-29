@@ -1,0 +1,8 @@
+-
+  name: 'Login Application Index'
+  uriPattern: 'login'
+  defaults:
+    '@package': 'JPG.Login'
+    '@controller': 'Secret'
+    '@action': 'index'
+    '@format': 'html'

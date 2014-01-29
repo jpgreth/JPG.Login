@@ -39,5 +39,64 @@ To get the same results assure you have in your flow/composer.json (and installe
     [...]
 }
 ```
-
 The "hfrahmann/opauth" Package i just installed for later use of OAuth login via Google, Twitter, Facebook... ("Sign In with..."-Function) but is not needed yet.
+
+
+### Second Commit [c163ee83790e335da1150d6b17c12aaebb193a79](https://github.com/jgreth/JPG.Login/commit/c163ee83790e335da1150d6b17c12aaebb193a79)
+
+#### Activate security stuff
+In Anlehnung an: http://www.layh.com/work/typo3-flow-typo3-fluid/tutorials/flow-registration-and-login.html
+
+Activate the default password and username provider in Settings.yaml file of Package.
+The authenticationStrategy is oneToken => one Token has to be authenticated to grant access.
+The default provider for the authentication is PersistedUsernamePasswordProvider.
+
+##### Settings.yaml
+```json
+TYPO3:
+  Flow:
+    security:
+      enable: TRUE
+      authentication:
+        #oneToken atLeastOneToken anyToken - more info see: http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartIII/Security.html#multi-factor-authentication-strategy
+        authenticationStrategy: oneToken
+        providers:
+          DefaultProvider:
+            provider: PersistedUsernamePasswordProvider
+```
+
+##### Policy.yaml
+```json
+##http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartIII/Security.html#access-control-lists
+##TYPO3 Flow will always add the magic Everybody role, which you don't have to configure yourself. This role will also be present, if no account is authenticated.
+##Likewise, the magic role Anonymous is added to the security context if a user is not authenticated.
+##Admin hat alle Eigenschaften der Rolle User + die Admin Eigenschaften
+roles:
+  User: []
+  Admin: ['User']
+```
+
+##### Flow: Routes.yaml
+```json
+#Subroutes from the Adress package.
+-
+  name: 'Logintut'
+  uriPattern: '<LoginSubroutes>'
+  defaults:
+    '@format': 'html'
+  subRoutes:
+    LoginSubroutes:
+      package: 'JPG.Login'
+```
+
+##### Package: Routes.yaml
+```json
+-
+  name: 'Login Application Index'
+  uriPattern: 'login'
+  defaults:
+    '@package': 'JPG.Login'
+    '@controller': 'Secret'
+    '@action': 'index'
+    '@format': 'html'
+```

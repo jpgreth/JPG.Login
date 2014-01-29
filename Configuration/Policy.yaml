@@ -1,0 +1,8 @@
+##http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartIII/Security.html#access-control-lists
+##TYPO3 Flow will always add the magic Everybody role, which you don't have to configure yourself. This role will also be present, if no account is authenticated.
+##Likewise, the magic role Anonymous is added to the security context if a user is not authenticated.
+
+## Admin hat alle Eigenschaften der Rolle User + die Admin Eigenschaften
+roles:
+  User: []
+  Admin: ['User']
