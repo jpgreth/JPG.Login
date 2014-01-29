@@ -42,7 +42,7 @@ To get the same results assure you have in your flow/composer.json (and installe
 The "hfrahmann/opauth" Package i just installed for later use of OAuth login via Google, Twitter, Facebook... ("Sign In with..."-Function) but is not needed yet.
 
 
-### Second Commit [c163ee83790e335da1150d6b17c12aaebb193a79](https://github.com/jgreth/JPG.Login/commit/c163ee83790e335da1150d6b17c12aaebb193a79)
+### Second Commit [bd0dce3c14fdf94e64fdfb2cc42588c946a66be5](https://github.com/jgreth/JPG.Login/commit/bd0dce3c14fdf94e64fdfb2cc42588c946a66be5)
 
 #### Activate security stuff
 In Anlehnung an: http://www.layh.com/work/typo3-flow-typo3-fluid/tutorials/flow-registration-and-login.html
@@ -52,7 +52,7 @@ The authenticationStrategy is oneToken => one Token has to be authenticated to g
 The default provider for the authentication is PersistedUsernamePasswordProvider.
 
 ##### Settings.yaml
-```json
+```yaml
 TYPO3:
   Flow:
     security:
@@ -66,7 +66,7 @@ TYPO3:
 ```
 
 ##### Policy.yaml
-```json
+```yaml
 ##http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartIII/Security.html#access-control-lists
 ##TYPO3 Flow will always add the magic Everybody role, which you don't have to configure yourself. This role will also be present, if no account is authenticated.
 ##Likewise, the magic role Anonymous is added to the security context if a user is not authenticated.
@@ -77,7 +77,7 @@ roles:
 ```
 
 ##### Flow: Routes.yaml
-```json
+```yaml
 #Subroutes from the Adress package.
 -
   name: 'Logintut'
@@ -90,7 +90,7 @@ roles:
 ```
 
 ##### Package: Routes.yaml
-```json
+```yaml
 -
   name: 'Login Application Index'
   uriPattern: 'login'
